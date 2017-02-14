@@ -1,6 +1,7 @@
 package application;
 	
 import controller.ReservaMesas;
+import controller.GestaoMesas;
 import controller.Mk;
 
 import javafx.application.Application;
@@ -11,21 +12,20 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	GestaoMesas gestorMesas;
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-			
-			FMesas janela_Mesas = new FMesas(320, 240);
-			primaryStage.setScene(janela_Mesas);
-			primaryStage.show();
-			
-			Mk mk = new Mk();
-			ReservaMesas gtr = new ReservaMesas();
-			gtr.addReserva(mk.cliente1, mk.mesa1, "21:00", 3);
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+
+		gestorMesas = new GestaoMesas();
+		
+		FMesas janela_Mesas = new FMesas(320, 240, gestorMesas);
+		primaryStage.setScene(janela_Mesas);
+		primaryStage.show();
+		
+		Mk mk = new Mk();
+		ReservaMesas gtr = new ReservaMesas();
+		gtr.addReserva(mk.cliente1, mk.mesa1, "21:00", 3);
+	
 		
 	}
 	
